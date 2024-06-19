@@ -23,3 +23,19 @@
 (deftest test-get-algorithm
   (testing "Returns the algorithm used to generate the key"
     (is (= "ChaCha20-Poly1305" (flle-key/get-algorithm (flle-key/create-file-key-from-bytes (byte-array 32)))))))
+
+(deftest test-get-format
+  (testing "Returns the format of the key"
+    (is (= "RAW" (flle-key/get-format (flle-key/create-file-key-from-bytes (byte-array 32)))))))
+
+(deftest test-get-encoded
+  (testing "Returns the encoded key"
+    (is (instance? String (flle-key/get-encoded (flle-key/create-file-key-from-bytes (byte-array 32)))))))
+
+(deftest test-file-key-eq?
+  (testing "Returns true when the keys are equal"
+    (let [cached-key (delay (flle-key/create-file-key-from-bytes (byte-array 32)))]
+      (is (flle-key/file-key-eq? @cached-key @cached-key))))
+  (testing "Returns false when the keys are not equal"
+    (is (not (flle-key/file-key-eq? (flle-key/create-file-key-from-bytes (byte-array 32))
+                                    (flle-key/create-file-key-from-bytes (byte-array 31)))))))
