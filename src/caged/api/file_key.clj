@@ -5,18 +5,27 @@
 (defn create-file-key
   "Creates a new key file"
   []
-  (FileKey.))
+  (try
+    (FileKey.)
+    (catch Exception e
+      (ex-info "Failed to create a new key file" {:exception e}))))
 
 (defn write-key-to-file
   "Creates a new key file and writes it to the specified file"
   [path]
-  (let [file-key (create-file-key)]
-    (.writeToFile file-key (io/file path))))
+  (try
+    (let [file-key (create-file-key)]
+      (.writeToFile file-key (io/file path)))
+    (catch Exception e
+      (ex-info "Failed to write key to file" {:exception e}))))
 
 (defn create-file-key-from-bytes
   "Creates a new key file from a byte array"
   [byte-array]
-  (FileKey. byte-array))
+  (try
+    (FileKey. byte-array)
+    (catch Exception e
+      (ex-info "Failed to create a new key file from byte array" {:exception e}))))
 
 (defn get-algorithm
   "Returns the algorithm used to generate the key.
