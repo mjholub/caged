@@ -14,7 +14,7 @@ Upstream documentation:
 
 ## License
 
-Copyright © 2024 FIXME
+Copyright © 2024 Marcelina Hołub, Jagged Contributors
 
 This program and the accompanying materials are made available under the
 terms of the Apache License 2.0 which is available at
