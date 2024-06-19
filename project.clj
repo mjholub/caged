@@ -6,7 +6,8 @@
   :deploy-branches ["main"]
   :dependencies
   [[org.clojure/clojure "1.11.1"]
-   [com.exceptionfactory.jagged/jagged-api "0.3.2"]]
+   [com.exceptionfactory.jagged/jagged-api "0.3.2"]
+   [com.exceptionfactory.jagged/jagged-bech32 "0.3.2"]]
   :coverage
   {:plugins [[lein-cloverage "1.2.2"]]
    :dependencies [[org.clojure/tools.logging "1.2.4"]]}
