@@ -17,11 +17,13 @@
   - `decoder`: Bech32 Decoder instance.
   - `encoded`: Bech32 encoded string.
 
-  Returns a map with keys :human-readable-part and :data."
+  Returns a 'Clojure-friendly' map with keys: 
+  - :human-readable-part
+  - :data"
   [^Bech32$Decoder decoder ^String encoded]
   (let [address (.decode decoder encoded)]
-    {:human-readable-part (.getHumanReadablePart address)
-     :data (.getData address)}))
+    {:human-readable-part (str (.getHumanReadablePart address))
+     :data (vec (.getData address))}))
 
 (defn encode
   "Encodes a human-readable part and data into a Bech32 encoded string.
